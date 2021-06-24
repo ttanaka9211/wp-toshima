@@ -29,3 +29,14 @@ services:
     volumes:
       - ./resources/mariadb:/var/lib/mysql
       - ./logs/mariadb:/var/log/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    environment:
+      PMA_HOST: wordpress
+      PMA_USER: wordpress
+      PMA_PASSWORD: example
+    # 8080 ポートをコンテナの 80 ポートにマッピング
+    # (http://localhost:8080/ などで myapp-pma コンテナにアクセス)
+    ports:
+      - 8000:80
